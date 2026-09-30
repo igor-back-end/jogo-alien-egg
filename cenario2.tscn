@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b6syefv4kwqa8"]
+
+[ext_resource type="Texture2D" uid="uid://cdrmeec75dy8v" path="res://img/cenario2.png" id="1_sb1mh"]
+[ext_resource type="PackedScene" uid="uid://deg6b1vdkfwnr" path="res://fazendeiro.tscn" id="2_wuo7r"]
+[ext_resource type="PackedScene" uid="uid://dy1weefna7mpe" path="res://peca_radar1.tscn" id="3_2umml"]
+[ext_resource type="Texture2D" uid="uid://bcj014j17cgdn" path="res://img/seta-direita.png" id="3_gl4s0"]
+[ext_resource type="PackedScene" uid="uid://d1y6reinui2gb" path="res://perito.tscn" id="4_8o4ok"]
+[ext_resource type="Texture2D" uid="uid://brerdc0wcu1oh" path="res://img/seta-esquerda.png" id="4_v01hm"]
+[ext_resource type="PackedScene" uid="uid://dy37cwmkrfeak" path="res://moita.tscn" id="5_jrc42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf7i2"]
+size = Vector2(28.25, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vevr8"]
+size = Vector2(30, 111)
+
+[node name="cenario2" type="Node2D" unique_id=608388110]
+
+[node name="cenario2" type="Sprite2D" parent="." unique_id=666198467]
+position = Vector2(578, 323)
+scale = Vector2(0.8372093, 0.8411458)
+texture = ExtResource("1_sb1mh")
+
+[node name="chao_cenario" type="StaticBody2D" parent="." unique_id=1681093118]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="chao_cenario" unique_id=1320885688]
+polygon = PackedVector2Array(-2, 504, 1151, 504, 1151, 647, -2, 649)
+
+[node name="fazendeiro" parent="." unique_id=1617729356 instance=ExtResource("2_wuo7r")]
+position = Vector2(1053, 477)
+
+[node name="Setas" type="Node2D" parent="." unique_id=1506468349]
+
+[node name="SetaDireita" type="Sprite2D" parent="Setas" unique_id=666256219]
+position = Vector2(1115, 535)
+scale = Vector2(0.09585213, 0.08448012)
+texture = ExtResource("3_gl4s0")
+
+[node name="SetaEsquerda" type="Sprite2D" parent="Setas" unique_id=1914850591]
+position = Vector2(37, 533.99994)
+scale = Vector2(0.098214366, 0.08615111)
+texture = ExtResource("4_v01hm")
+
+[node name="RetornoCenario2para1" type="Area2D" parent="." unique_id=1359538698]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RetornoCenario2para1" unique_id=910361097]
+position = Vector2(1154.875, 458)
+shape = SubResource("RectangleShape2D_pf7i2")
+
+[node name="PecaRadar1" parent="." unique_id=1075520663 instance=ExtResource("3_2umml")]
+position = Vector2(599, 411)
+
+[node name="Perito1" parent="." unique_id=862935936 instance=ExtResource("4_8o4ok")]
+position = Vector2(160, 478)
+
+[node name="Moita1" parent="." unique_id=981034302 instance=ExtResource("5_jrc42")]
+position = Vector2(880, 446)
+
+[node name="Moita2" parent="." unique_id=1765906232 instance=ExtResource("5_jrc42")]
+position = Vector2(300, 444)
+
+[node name="SaidaCenario2para4" type="Area2D" parent="." unique_id=1565790348]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaidaCenario2para4" unique_id=998873887]
+position = Vector2(-1, 446)
+shape = SubResource("RectangleShape2D_vevr8")
+
+[node name="Perito2" parent="." unique_id=1009554662 instance=ExtResource("4_8o4ok")]
+position = Vector2(669, 478)
+
+[connection signal="body_entered" from="RetornoCenario2para1" to="fazendeiro" method="_on_retorno_cenario_2_para_1_body_entered"]
+[connection signal="body_entered" from="SaidaCenario2para4" to="fazendeiro" method="_on_saida_cenario_2_para_4_body_entered"]

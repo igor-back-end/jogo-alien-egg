@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dy1weefna7mpe"]
+
+[ext_resource type="Script" uid="uid://vl8armxlbetq" path="res://peca_radar1.gd" id="1_agx20"]
+[ext_resource type="Texture2D" uid="uid://o0gy1r4b3eh4" path="res://img/item1.png" id="1_sv30r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf7i2"]
+size = Vector2(123, 105.25)
+
+[node name="PecaRadar1" type="Area2D" unique_id=1075520663]
+collision_mask = 3
+script = ExtResource("1_agx20")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=210207423]
+position = Vector2(3.0000153, -1.999999)
+scale = Vector2(0.14135173, 0.095703125)
+texture = ExtResource("1_sv30r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2145071999]
+shape = SubResource("RectangleShape2D_pf7i2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

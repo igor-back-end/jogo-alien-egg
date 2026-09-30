@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://d1y6reinui2gb"]
+
+[ext_resource type="Script" uid="uid://dpqjxemrcqx4i" path="res://perito.gd" id="1_mxxf4"]
+[ext_resource type="Texture2D" uid="uid://dr652g7vxtb0r" path="res://img/personagem-perito.png" id="1_o64a4"]
+
+[sub_resource type="Animation" id="Animation_mxxf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mk108"]
+resource_name = "andar"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xyfud"]
+_data = {
+&"RESET": SubResource("Animation_mxxf4"),
+&"andar": SubResource("Animation_mk108")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxxf4"]
+size = Vector2(38, 76)
+
+[node name="Perito" type="CharacterBody2D" unique_id=862935936]
+collision_layer = 4
+script = ExtResource("1_mxxf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1343565850]
+position = Vector2(33.00001, -17.875002)
+scale = Vector2(0.15429689, 0.2141927)
+texture = ExtResource("1_o64a4")
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=691639593]
+libraries/ = SubResource("AnimationLibrary_xyfud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1518388518]
+position = Vector2(32, -14)
+shape = SubResource("RectangleShape2D_mxxf4")
+
+[node name="AreaVisao" type="Area2D" parent="." unique_id=128848121]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaVisao" unique_id=2032559613]
+polygon = PackedVector2Array(40, -39, 212, -102, 212, -1)
+
+[connection signal="body_entered" from="AreaVisao" to="." method="_on_area_visao_body_entered"]

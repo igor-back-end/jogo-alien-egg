@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://t2pgf6qjndca"]
+
+[ext_resource type="Texture2D" uid="uid://byaecwixo1kfe" path="res://img/cenario-inicial.png" id="1_50y8i"]
+[ext_resource type="PackedScene" uid="uid://deg6b1vdkfwnr" path="res://fazendeiro.tscn" id="2_gej1v"]
+[ext_resource type="Texture2D" uid="uid://b60r7c6txlpkh" path="res://img/disco-voador.png" id="3_gej1v"]
+[ext_resource type="PackedScene" uid="uid://dp1ml055wbygk" path="res://alien.tscn" id="3_pj1k3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf7i2"]
+size = Vector2(17.5, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vevr8"]
+size = Vector2(32, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxfj4"]
+size = Vector2(164, 266.5)
+
+[sub_resource type="Animation" id="Animation_gej1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fazendeiro:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(580, 364)]
+}
+
+[sub_resource type="Animation" id="Animation_pj1k3"]
+resource_name = "abducao"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fazendeiro:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(580, 364), Vector2(580, 120)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nd3an"]
+_data = {
+&"RESET": SubResource("Animation_gej1v"),
+&"abducao": SubResource("Animation_pj1k3")
+}
+
+[node name="CenarioFinal" type="Node2D" unique_id=876805540]
+
+[node name="CenarioInicial" type="Sprite2D" parent="." unique_id=1068097364]
+position = Vector2(578, 326.24997)
+scale = Vector2(0.42633927, 0.40343747)
+texture = ExtResource("1_50y8i")
+
+[node name="Chao_terreno" type="StaticBody2D" parent="." unique_id=1072810198]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=94009306]
+polygon = PackedVector2Array(632, 413, 649, 413, 641, 413)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=1970814460]
+polygon = PackedVector2Array(5, 109, 5, 278, 414, 276, 467, 309, 524, 346, 549, 365, 618, 403, 629, 413, 597, 405, 542, 375, 413, 292, 5, 289)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=1298797201]
+polygon = PackedVector2Array(2, 502, 857, 502, 877, 528, 898, 535, 926, 552, 967, 554, 1017, 552, 1060, 536, 1087, 502, 1151, 502, 1151, 568, 5, 560)
+
+[node name="SaidaCenario1para2" type="Area2D" parent="." unique_id=1432870491]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaidaCenario1para2" unique_id=185276929]
+position = Vector2(1, 450)
+shape = SubResource("RectangleShape2D_pf7i2")
+
+[node name="Alien" parent="." unique_id=1636020066 instance=ExtResource("3_pj1k3")]
+position = Vector2(988, 538)
+
+[node name="SaidaCenario1para3" type="Area2D" parent="." unique_id=801044323]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaidaCenario1para3" unique_id=417592969]
+position = Vector2(1160, 427)
+shape = SubResource("RectangleShape2D_vevr8")
+
+[node name="fazendeiro" parent="." unique_id=1617729356 instance=ExtResource("2_gej1v")]
+position = Vector2(580, 364)
+
+[node name="DiscoVoador" type="Sprite2D" parent="." unique_id=1663671072]
+position = Vector2(604, 105)
+scale = Vector2(0.22303921, 0.15966797)
+texture = ExtResource("3_gej1v")
+
+[node name="ZonaAbducao" type="Area2D" parent="." unique_id=1659920809]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaAbducao" unique_id=30513741]
+position = Vector2(608, 276.75)
+shape = SubResource("RectangleShape2D_mxfj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=429603270]
+libraries/ = SubResource("AnimationLibrary_nd3an")
+
+[connection signal="body_entered" from="ZonaAbducao" to="fazendeiro" method="_on_zona_abducao_body_entered"]

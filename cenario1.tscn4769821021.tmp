@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://3tmocju5nsmu"]
+
+[ext_resource type="Texture2D" uid="uid://byaecwixo1kfe" path="res://img/cenario-inicial.png" id="1_4fmn5"]
+[ext_resource type="PackedScene" uid="uid://deg6b1vdkfwnr" path="res://fazendeiro.tscn" id="2_lfv8t"]
+[ext_resource type="PackedScene" uid="uid://dp1ml055wbygk" path="res://alien.tscn" id="3_07fep"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf7i2"]
+size = Vector2(17.5, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vevr8"]
+size = Vector2(32, 152)
+
+[node name="Cenario1" type="Node2D" unique_id=876805540]
+
+[node name="CenarioInicial" type="Sprite2D" parent="." unique_id=1068097364]
+position = Vector2(578, 326.24997)
+scale = Vector2(0.42633927, 0.40343747)
+texture = ExtResource("1_4fmn5")
+
+[node name="fazendeiro" parent="." unique_id=1617729356 instance=ExtResource("2_lfv8t")]
+position = Vector2(777, 473)
+
+[node name="Chao_terreno" type="StaticBody2D" parent="." unique_id=1072810198]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=94009306]
+polygon = PackedVector2Array(632, 413, 649, 413, 641, 413)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=1970814460]
+polygon = PackedVector2Array(5, 109, 5, 278, 414, 276, 467, 309, 524, 346, 549, 365, 618, 403, 629, 413, 597, 405, 542, 375, 413, 292, 5, 289)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=1298797201]
+polygon = PackedVector2Array(2, 502, 857, 502, 877, 528, 898, 535, 926, 552, 967, 554, 1017, 552, 1060, 536, 1087, 502, 1151, 502, 1151, 568, 5, 560)
+
+[node name="SaidaCenario1para2" type="Area2D" parent="." unique_id=1432870491]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaidaCenario1para2" unique_id=185276929]
+position = Vector2(-1, 451)
+shape = SubResource("RectangleShape2D_pf7i2")
+
+[node name="Alien" parent="." unique_id=1636020066 instance=ExtResource("3_07fep")]
+position = Vector2(988, 538)
+
+[node name="SaidaCenario1para3" type="Area2D" parent="." unique_id=801044323]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaidaCenario1para3" unique_id=417592969]
+position = Vector2(1149, 426)
+shape = SubResource("RectangleShape2D_vevr8")
+
+[connection signal="area_entered" from="SaidaCenario1para2" to="fazendeiro" method="_on_saida_cenario_1_para_3_area_entered"]
+[connection signal="area_entered" from="SaidaCenario1para3" to="fazendeiro" method="_on_saida_cenario_1_para_3_area_entered"]

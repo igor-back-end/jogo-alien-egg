@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://wpytbr7s8syq"]
+
+[ext_resource type="AudioStream" uid="uid://husqan816ff8" path="res://sound/musica.mp3" id="1_5gy41"]
+
+[node name="MusicaFundo" type="AudioStreamPlayer" unique_id=1124364612]
+stream = ExtResource("1_5gy41")
+autoplay = true

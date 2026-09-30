@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://3tmocju5nsmu"]
+
+[ext_resource type="Texture2D" uid="uid://byaecwixo1kfe" path="res://img/cenario-inicial.png" id="1_4fmn5"]
+[ext_resource type="Script" uid="uid://2e5ciea0knnm" path="res://cenario1.gd" id="1_klvc1"]
+[ext_resource type="PackedScene" uid="uid://deg6b1vdkfwnr" path="res://fazendeiro.tscn" id="2_lfv8t"]
+[ext_resource type="PackedScene" uid="uid://dp1ml055wbygk" path="res://alien.tscn" id="3_07fep"]
+[ext_resource type="Texture2D" uid="uid://bcj014j17cgdn" path="res://img/seta-direita.png" id="3_exkal"]
+[ext_resource type="Texture2D" uid="uid://brerdc0wcu1oh" path="res://img/seta-esquerda.png" id="4_klvc1"]
+[ext_resource type="Texture2D" uid="uid://dbfb53541mji2" path="res://img/seta-descida.png" id="5_11hcm"]
+[ext_resource type="Texture2D" uid="uid://bnfdmgk645l17" path="res://img/seta-subida.png" id="6_3idk4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf7i2"]
+size = Vector2(17.5, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vevr8"]
+size = Vector2(32, 152)
+
+[node name="Cenario1" type="Node2D" unique_id=876805540]
+script = ExtResource("1_klvc1")
+
+[node name="CenarioInicial" type="Sprite2D" parent="." unique_id=1068097364]
+position = Vector2(578, 326.24997)
+scale = Vector2(0.42633927, 0.40343747)
+texture = ExtResource("1_4fmn5")
+
+[node name="Chao_terreno" type="StaticBody2D" parent="." unique_id=1072810198]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=94009306]
+polygon = PackedVector2Array(632, 413, 649, 413, 641, 413)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=1970814460]
+polygon = PackedVector2Array(5, 109, 5, 278, 414, 276, 467, 309, 524, 346, 549, 365, 618, 403, 629, 413, 597, 405, 542, 375, 413, 292, 5, 289)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Chao_terreno" unique_id=1298797201]
+polygon = PackedVector2Array(2, 502, 857, 502, 877, 528, 898, 535, 926, 552, 967, 554, 1017, 552, 1060, 536, 1087, 502, 1151, 502, 1151, 568, 5, 560)
+
+[node name="SaidaCenario1para2" type="Area2D" parent="." unique_id=1432870491]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaidaCenario1para2" unique_id=185276929]
+position = Vector2(-1, 451)
+shape = SubResource("RectangleShape2D_pf7i2")
+
+[node name="Alien" parent="." unique_id=1636020066 instance=ExtResource("3_07fep")]
+position = Vector2(988, 538)
+
+[node name="SaidaCenario1para3" type="Area2D" parent="." unique_id=801044323]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SaidaCenario1para3" unique_id=417592969]
+position = Vector2(1160, 427)
+shape = SubResource("RectangleShape2D_vevr8")
+
+[node name="Setas" type="Node2D" parent="." unique_id=2007947472]
+
+[node name="SetaDireita" type="Sprite2D" parent="Setas" unique_id=690838388]
+position = Vector2(1115, 535)
+scale = Vector2(0.09585213, 0.08448012)
+texture = ExtResource("3_exkal")
+
+[node name="SetaEsquerda" type="Sprite2D" parent="Setas" unique_id=298381468]
+position = Vector2(37, 533.99994)
+scale = Vector2(0.098214366, 0.08615111)
+texture = ExtResource("4_klvc1")
+
+[node name="SetaDescida" type="Sprite2D" parent="Setas" unique_id=1594561083]
+position = Vector2(445, 366.99997)
+scale = Vector2(0.09662568, 0.085913345)
+texture = ExtResource("5_11hcm")
+
+[node name="SetaSubida" type="Sprite2D" parent="Setas" unique_id=508701608]
+position = Vector2(609, 448)
+scale = Vector2(0.08350509, 0.07369398)
+texture = ExtResource("6_3idk4")
+
+[node name="fazendeiro" parent="." unique_id=1617729356 instance=ExtResource("2_lfv8t")]
+position = Vector2(26, 253)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=345321666]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1569689224]
+offset_left = 271.0
+offset_top = 27.0
+offset_right = 952.0
+offset_bottom = 54.0
+color = Color(0, 0, 0, 0.3019608)
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect" unique_id=588773681]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Vá até o alienígena caído."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="SaidaCenario1para2" to="fazendeiro" method="_on_saida_cenario_1_para_2_body_entered"]
+[connection signal="area_entered" from="SaidaCenario1para3" to="fazendeiro" method="_on_saida_cenario_1_para_3_area_entered"]
+[connection signal="body_entered" from="SaidaCenario1para3" to="fazendeiro" method="_on_saida_cenario_1_para_3_body_entered"]

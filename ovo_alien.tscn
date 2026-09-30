@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://5kj6p20yiqsd"]
+
+[ext_resource type="Texture2D" uid="uid://bgli744i0jpjj" path="res://img/ovo.png" id="1_mkml7"]
+[ext_resource type="Script" uid="uid://d2c05r0qicqfg" path="res://ovo_alien.gd" id="1_p7yfb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pf7i2"]
+radius = 31.0
+height = 82.0
+
+[node name="OvoAlien" type="Area2D" unique_id=824274759]
+collision_mask = 3
+script = ExtResource("1_p7yfb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1716860835]
+position = Vector2(-2.0000002, -1.0000005)
+scale = Vector2(0.12713328, 0.13216147)
+texture = ExtResource("1_mkml7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1549153682]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_pf7i2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

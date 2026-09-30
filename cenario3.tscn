@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://ot0aw2q24aiw"]
+
+[ext_resource type="Texture2D" uid="uid://dsuxh7i2nvfcc" path="res://img/cenario3.png" id="1_m1pia"]
+[ext_resource type="PackedScene" uid="uid://d1y6reinui2gb" path="res://perito.tscn" id="2_j6g2l"]
+[ext_resource type="PackedScene" uid="uid://deg6b1vdkfwnr" path="res://fazendeiro.tscn" id="3_phrbk"]
+[ext_resource type="PackedScene" uid="uid://5m4e80wmp2si" path="res://peca_radar2.tscn" id="4_phrbk"]
+[ext_resource type="PackedScene" uid="uid://dy37cwmkrfeak" path="res://moita.tscn" id="5_qt0yd"]
+[ext_resource type="Texture2D" uid="uid://brerdc0wcu1oh" path="res://img/seta-esquerda.png" id="6_vbg4l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf7i2"]
+size = Vector2(37, 119)
+
+[node name="Cenario3" type="Node2D" unique_id=919440325]
+
+[node name="Cenario3" type="Sprite2D" parent="." unique_id=756262533]
+position = Vector2(576, 323.5)
+scale = Vector2(0.4178779, 0.4173177)
+texture = ExtResource("1_m1pia")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=706442473]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=924755466]
+polygon = PackedVector2Array(0, 502, 953, 502, 948, 225, 953, 499, 954, 533, 1, 527)
+
+[node name="RetornoCenario3para1" type="Area2D" parent="." unique_id=1013878698]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RetornoCenario3para1" unique_id=415279726]
+position = Vector2(-1, 443)
+shape = SubResource("RectangleShape2D_pf7i2")
+
+[node name="fazendeiro" parent="." unique_id=1617729356 instance=ExtResource("3_phrbk")]
+position = Vector2(19, 478)
+
+[node name="Moita" parent="." unique_id=981034302 instance=ExtResource("5_qt0yd")]
+position = Vector2(504, 441)
+
+[node name="PecaRadar2" parent="." unique_id=2000357718 instance=ExtResource("4_phrbk")]
+position = Vector2(630, 453)
+
+[node name="Perito1" parent="." unique_id=862935936 instance=ExtResource("2_j6g2l")]
+position = Vector2(201, 478)
+limite_esquerda = 300.0
+limite_direita = 900.0
+
+[node name="Perito2" parent="." unique_id=970351411 instance=ExtResource("2_j6g2l")]
+position = Vector2(820, 476)
+limite_esquerda = 300.0
+limite_direita = 900.0
+
+[node name="Setas" type="Node2D" parent="." unique_id=774245671]
+
+[node name="SetaEsquerda" type="Sprite2D" parent="Setas" unique_id=707088134]
+position = Vector2(37, 533.99994)
+scale = Vector2(0.098214366, 0.08615111)
+texture = ExtResource("6_vbg4l")
+
+[connection signal="body_entered" from="RetornoCenario3para1" to="fazendeiro" method="_on_retorno_cenario_3_para_1_body_entered"]

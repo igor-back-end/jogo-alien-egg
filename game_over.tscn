@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c7vs1prcegoty"]
+
+[ext_resource type="Script" uid="uid://cs1yip7jfagqp" path="res://game_over.gd" id="1_yxx3c"]
+[ext_resource type="Texture2D" uid="uid://sil1kny6wc3m" path="res://img/game-over.png" id="2_ccer4"]
+[ext_resource type="Texture2D" uid="uid://5d28vg7ylj3a" path="res://img/mensagem-game-over.png" id="3_ccer4"]
+
+[node name="GameOver" type="Control" unique_id=805819835]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yxx3c")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1532829092]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 648.0
+texture = ExtResource("2_ccer4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="." unique_id=647886836]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 586.0
+offset_right = 776.0
+offset_bottom = 630.0
+text = "Tentar novamente"
+
+[node name="MensagemGameOver" type="Sprite2D" parent="." unique_id=408214547]
+position = Vector2(569, 84)
+scale = Vector2(0.32633772, 0.24935235)
+texture = ExtResource("3_ccer4")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

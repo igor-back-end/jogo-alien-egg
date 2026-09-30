@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dy37cwmkrfeak"]
+
+[ext_resource type="Texture2D" uid="uid://duqk6ute0kobq" path="res://img/moita.png" id="1_6a7ok"]
+[ext_resource type="Script" uid="uid://cn6oaeajd8k5y" path="res://moita.gd" id="1_w7tmd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf7i2"]
+size = Vector2(146, 109)
+
+[node name="Moita" type="Area2D" unique_id=981034302]
+collision_mask = 2
+script = ExtResource("1_w7tmd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=200030228]
+position = Vector2(4.0000305, 3)
+scale = Vector2(0.063634716, 0.08040365)
+texture = ExtResource("1_6a7ok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=609084917]
+position = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_pf7i2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

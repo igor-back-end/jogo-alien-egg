@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dk7jjm704phj7"]
+
+[ext_resource type="Script" uid="uid://2cdislr5s1b8" path="res://conversa_alien.gd" id="1_jmae3"]
+[ext_resource type="Texture2D" uid="uid://chc2g325f6vfy" path="res://cutscenes/conversa.png" id="2_tpjr7"]
+
+[node name="ConversaAlien" type="Control" unique_id=198402205]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jmae3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1079233708]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 650.0
+texture = ExtResource("2_tpjr7")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=825730885]
+layout_mode = 0
+offset_top = 596.0
+offset_right = 1150.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel" unique_id=1925459445]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 55.0
+horizontal_alignment = 1
